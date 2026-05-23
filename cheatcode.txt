@@ -1,0 +1,2 @@
+g++ backend.cpp -o backend.exe -lws2_32
+.\backend.exe

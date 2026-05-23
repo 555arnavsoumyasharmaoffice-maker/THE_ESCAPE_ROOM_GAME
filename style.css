@@ -1,0 +1,1153 @@
+/* Google Fonts Import for Cinematic Look (Added Cinzel Decorative) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;900&family=Montserrat:wght@800&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body, html {
+    width: 100%; height: 100%; background-color: #000; overflow: hidden;
+}
+
+/* Cinematic Shadow Overlay (Vignette) */
+body::after {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.95) 100%);
+    z-index: 2; pointer-events: none;
+}
+
+/* =========================================
+   Phase 1: Epic Integrated Intro Screen 
+   ========================================= */
+#intro-screen {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+
+    perspective: 1200px;
+
+    background: #000;
+
+    transition: opacity 1s ease-in-out;
+}
+
+/* MINE BACKGROUND */
+#intro-screen::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    
+    url('mine-bg.jpeg');
+
+    background-size: cover;
+
+    background-position: center center;
+
+    background-repeat: no-repeat;
+
+    transform:scale(1);
+
+    animation:caveZoom 7s ease-out forwards;
+
+    z-index:-2;
+}
+
+/* DARK TUNNEL DEPTH */
+#intro-screen::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at center,
+    transparent 0%,
+    rgba(0,0,0,0.35) 35%,
+    rgba(0,0,0,0.92) 100%);
+
+    z-index:-1;
+}
+
+#intro-title {
+    display: flex; flex-direction: column; align-items: center; gap: 0px; text-align: center;
+    /* Shake effect ab MINER ke time par (3.5s) hoga */
+    animation: screenShake 0.3s 3.5s forwards; 
+}
+
+.word{
+    opacity:0;
+    transform-style:preserve-3d;
+}
+
+/* THE */
+.word:nth-child(1){
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 30px;
+    color: #d0d0d0;
+
+    animation:
+    tunnelEntry 1.2s .5s forwards;
+}
+
+/* LOST */
+.word:nth-child(2){
+
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 8rem;
+    letter-spacing: 15px;
+
+    color:#ff9800;
+
+    text-shadow:
+    0 0 20px #ff9800,
+    0 0 40px #ff5722;
+
+    animation:
+    tunnelEntryBig 1.5s 1.6s forwards;
+}
+
+/* MINER */
+.word:nth-child(3){
+
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 8.5rem;
+
+    letter-spacing:25px;
+
+    color:#ffeb3b;
+
+    text-shadow:
+    0 0 20px #ff9800,
+    0 0 50px #ff5722;
+
+    animation:
+    minerImpact 1.6s 3.1s forwards;
+}
+
+/* --- KEYFRAMES FOR EPIC INTEGRATED ANIMATIONS --- */
+@keyframes tunnelEntry{
+
+    0%{
+        opacity:0;
+
+        transform:
+        translateZ(-1200px)
+        translateY(150px)
+        scale(0.1);
+
+        filter:blur(25px);
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+        translateZ(0)
+        translateY(0)
+        scale(1);
+
+        filter:blur(0);
+    }
+}
+
+@keyframes tunnelEntryBig{
+
+    0%{
+        opacity:0;
+
+        transform:
+        perspective(1200px)
+        translateZ(-2500px)
+        scale(0.05)
+        rotateX(40deg);
+
+        filter:blur(40px);
+    }
+
+    70%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+        translateZ(0)
+        scale(1)
+        rotateX(0);
+
+        filter:blur(0);
+    }
+}
+
+@keyframes minerImpact{
+
+    0%{
+        opacity:0;
+
+        transform:
+        translateZ(-4000px)
+        scale(0.02)
+        translateY(250px);
+
+        filter:blur(50px);
+
+        letter-spacing:40px;
+    }
+
+    60%{
+        opacity:1;
+
+        transform:scale(1.08);
+
+        text-shadow:
+        0 0 40px #ff9800,
+        0 0 80px #ff5722;
+    }
+
+    100%{
+        opacity:1;
+
+        transform:scale(1);
+
+        letter-spacing:25px;
+
+        text-shadow:
+        0 0 20px #ff9800,
+        0 0 50px #ff5722;
+    }
+}
+
+@keyframes caveZoom{
+
+    0%{
+        transform:
+        scale(1.35)
+        translateY(40px);
+    }
+
+    100%{
+        transform:
+        scale(1.05)
+        translateY(0px);
+    }
+}
+
+@keyframes screenShake {
+    0% { transform: translate(0, 0); }
+    15% { transform: translate(-15px, 8px); }
+    30% { transform: translate(15px, -8px); }
+    45% { transform: translate(-10px, 12px); }
+    60% { transform: translate(10px, -12px); }
+    75% { transform: translate(-5px, 8px); }
+    90% { transform: translate(5px, -8px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* =========================================
+   Phase 2: Video & Loader Styling 
+   ========================================= */
+
+/* =========================================
+   Phase 2: Video & Loader Styling 
+   ========================================= */
+#bg-video {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    width: 100vw; 
+    height: 100vh; 
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(1.15); 
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+/* =========================================
+   Epic Mechanical Gear Loader Styling
+   ========================================= */
+#loader-wrapper {
+    position: absolute;
+    bottom: 80px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; 
+    z-index: 5;
+    display: none;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.loading-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 12px;
+    margin-bottom: 25px; 
+    color: #ffffff; 
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #ff5722, 0 0 25px #ff9800;
+}
+
+.loading-bar-bg {
+    width: 100%; 
+    height: 18px; 
+    background: linear-gradient(to bottom, #1a1a1a, #050505);
+    border: 2px solid #5a4629; 
+    border-radius: 20px; 
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.9), inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+.loading-bar-bg::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -25px; 
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(circle, #222 30%, #111 100%);
+    border: 5px dashed #8b6b3d; 
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.9), inset 0 0 10px rgba(0,0,0,0.8);
+    animation: spinGear 4s linear infinite; 
+    z-index: 2;
+}
+
+.loading-bar-bg::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(circle, #222 30%, #111 100%);
+    border: 5px dashed #8b6b3d;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.9), inset 0 0 10px rgba(0,0,0,0.8);
+    animation: spinGear 4s linear infinite reverse; 
+    z-index: 2;
+}
+
+.loading-bar-fill {
+    height: 100%; 
+    width: 0%;
+    background: linear-gradient(90deg, #ff5722 0%, #ff9800 50%, #ffeb3b 100%); 
+    border-radius: 20px;
+    box-shadow: 0 0 15px #ff9800, 0 0 35px #ffeb3b;
+    transition: width 0.08s linear;
+    position: relative;
+    z-index: 1;
+}
+
+.loading-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 35%;
+    left: 0;
+    height: 30%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+@keyframes spinGear {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* =========================================
+   Start Button Styling
+   ========================================= */
+#start-btn {
+    display: none;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    padding: 15px 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    color: #000;
+    background-color: #ffeb3b;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 5px;
+    font-weight: 800;
+    box-shadow: 0 0 30px #ffeb3b;
+    transition: all 0.3s ease;
+    animation: fadeInBtn 1s ease-in-out forwards;
+    border-radius: 5px;
+}
+
+#start-btn:hover {
+    background-color: #fff;
+    box-shadow: 0 0 50px #fff;
+    transform: translateX(-50%) scale(1.05);
+}
+
+@keyframes fadeInBtn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* =========================================
+   GOD-TIER Cinematic Login/Signup Panel
+   ========================================= */
+#login-modal {
+    display: none; 
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%);
+    backdrop-filter: blur(2px); 
+    z-index: 20;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInBg 0.5s ease-out forwards;
+}
+
+/* The Ancient Stone Tablet (Login Box) */
+.login-box {
+    background: url('https://www.transparenttextures.com/patterns/black-scales.png'), linear-gradient(135deg, rgba(20,20,20,0.95), rgba(5,5,5,0.98));
+    border: 2px solid #8b6b3d;
+    padding: 40px 50px;
+    border-radius: 12px;
+    /* Epic Glowing Shadows */
+    box-shadow: 0 0 50px rgba(0,0,0,1), 
+                inset 0 0 20px rgba(255, 87, 34, 0.4),
+                0 15px 35px rgba(255, 87, 34, 0.2);
+    text-align: center;
+    width: 420px;
+    position: relative;
+    overflow: hidden;
+    /* Slam entrance aur uske baad continuous floating */
+    animation: tabletSlam 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
+               floatTablet 4s ease-in-out infinite alternate 0.6s;
+}
+
+/* Glowing Lava Line on top */
+.login-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, transparent, #ffeb3b, #ff5722, #ffeb3b, transparent);
+    box-shadow: 0 0 15px #ff5722;
+}
+
+/* Tabs */
+.tab-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(139, 107, 61, 0.5);
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 5px 10px;
+    position: relative;
+}
+
+.tab-btn:hover {
+    color: #ff9800;
+    text-shadow: 0 0 15px #ff9800;
+}
+
+.tab-btn.active {
+    color: #ffeb3b;
+    font-weight: 900;
+    text-shadow: 0 0 20px #ff5722;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff9800, transparent);
+    box-shadow: 0 0 15px #ff5722;
+}
+
+.login-title {
+    font-family: 'Cinzel', serif;
+    color: #ffffff;
+    font-size: 2.2rem;
+    letter-spacing: 6px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px #ff5722, 0 0 30px #ff9800;
+}
+
+/* Magma Forged Inputs */
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 45px 15px 15px; /* Eye icon ke liye right padding */
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    border-bottom: 2px solid #5a4629;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    outline: none;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Jab input par click karoge toh aag jal uthegi */
+.input-group input:focus {
+    border-color: #ff5722;
+    border-bottom: 2px solid #ffeb3b;
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.3), inset 0 0 15px rgba(255, 152, 0, 0.2);
+    background: rgba(20, 10, 0, 0.8);
+    transform: scale(1.02);
+}
+
+/* Eye Icon */
+.eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.3rem;
+    user-select: none;
+    transition: all 0.3s ease;
+    filter: grayscale(100%) brightness(150%) opacity(0.5);
+}
+
+.eye-icon:hover {
+    filter: grayscale(0%) brightness(120%) opacity(1);
+    transform: translateY(-50%) scale(1.2);
+    text-shadow: 0 0 20px #ff9800;
+}
+
+/* The Heartbeat Button */
+.submit-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 5px;
+    color: #111;
+    background: linear-gradient(90deg, #ff9800, #ffeb3b, #ff5722);
+    background-size: 200% auto;
+    border: 2px solid #ffeb3b;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.6);
+    /* Continuous pulse animation */
+    animation: btnHeartbeat 2s infinite, fireShimmer 3s infinite linear;
+}
+
+.submit-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 40px rgba(255, 235, 59, 0.8), 0 0 20px rgba(255, 87, 34, 1);
+    color: #000;
+    letter-spacing: 7px;
+}
+
+/* --- ANIMATIONS FOR MODAL --- */
+@keyframes fadeInBg {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes tabletSlam {
+    0% { opacity: 0; transform: scale(1.5) translateY(-100px) rotateX(20deg); filter: blur(10px); }
+    70% { opacity: 1; transform: scale(0.9) translateY(10px) rotateX(-5deg); filter: blur(0px); }
+    100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); }
+}
+
+@keyframes floatTablet {
+    0% { transform: translateY(0px); box-shadow: 0 0 50px rgba(0,0,0,1), inset 0 0 20px rgba(255, 87, 34, 0.4); }
+    100% { transform: translateY(-12px); box-shadow: 0 20px 60px rgba(0,0,0,1), inset 0 0 30px rgba(255, 152, 0, 0.6); }
+}
+
+@keyframes btnHeartbeat {
+    0% { transform: scale(1); }
+    5% { transform: scale(1.03); box-shadow: 0 0 30px rgba(255, 235, 59, 0.8); }
+    10% { transform: scale(1); }
+    15% { transform: scale(1.03); box-shadow: 0 0 30px rgba(255, 235, 59, 0.8); }
+    20% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+/* =========================================
+   Dungeon Entry & Spark Effects
+   ========================================= */
+/* =========================================
+   AAA CINEMATIC DUNGEON ENTRY
+   ========================================= */
+
+/* =========================================
+   AAA CINEMATIC DUNGEON ENTRY
+   ========================================= */
+
+/* =========================================
+   CINEMATIC DUNGEON ENTRY
+   ========================================= */
+
+/* =========================================
+   AAA DUNGEON ENTRY
+========================================= */
+
+#dungeon-entry{
+    position:absolute;
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+
+    overflow:hidden;
+}
+
+/* =========================================
+   MAIN FRAME
+========================================= */
+
+#welcome-panel{
+
+    position:relative;
+
+    width:min(760px,68vw);
+    height:420px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    animation:
+    panelEnter 1.3s cubic-bezier(.17,.84,.44,1),
+    floating 4s ease-in-out infinite alternate;
+
+    filter:drop-shadow(0 0 25px rgba(255,170,0,0.6));
+}
+
+/* =========================================
+   OUTER FRAME
+========================================= */
+
+#welcome-panel::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(145deg,
+    #ffcc66,
+    #8a4d00 30%,
+    #ffcc66 60%,
+    #5e3200 100%);
+
+    clip-path:polygon(
+    8% 0%,
+    92% 0%,
+    100% 8%,
+    100% 92%,
+    92% 100%,
+    8% 100%,
+    0% 92%,
+    0% 8%
+    );
+
+    box-shadow:
+    0 0 15px #ff9900,
+    0 0 50px rgba(255,140,0,0.6);
+
+}
+
+/* =========================================
+   INNER PANEL
+========================================= */
+
+.inner-panel{
+
+    position:absolute;
+
+    inset:12px;
+
+    background:
+    radial-gradient(circle at top,
+    rgba(70,40,0,0.6),
+    rgba(5,5,5,0.98));
+
+    clip-path:polygon(
+    8% 0%,
+    92% 0%,
+    100% 8%,
+    100% 92%,
+    92% 100%,
+    8% 100%,
+    0% 92%,
+    0% 8%
+    );
+
+    border:2px solid rgba(255,200,120,0.3);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+}
+
+/* =========================================
+   GLOW OVERLAY
+========================================= */
+
+.inner-panel::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at center,
+    rgba(255,180,0,0.08),
+    transparent 70%);
+
+    pointer-events:none;
+}
+
+/* =========================================
+   TEXTS
+========================================= */
+
+.welcome-top{
+
+    font-family:'Cinzel',serif;
+
+    color:white;
+
+    font-size:3rem;
+
+    letter-spacing:10px;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 10px rgba(255,220,120,0.9),
+    0 0 30px rgba(255,120,0,0.6);
+}
+
+.player-name{
+
+    font-family:'Cinzel',serif;
+
+    font-size:clamp(5rem,7vw,8rem);
+
+    color:#ffd54f;
+
+    line-height:1;
+
+    text-transform:uppercase;
+
+    text-shadow:
+    0 0 10px #ffcc33,
+    0 0 25px #ff9900,
+    0 0 60px rgba(255,140,0,0.9);
+
+    animation:goldPulse 2s infinite alternate;
+}
+
+.divider{
+
+    width:240px;
+    height:2px;
+
+    margin:25px 0;
+
+    background:
+    linear-gradient(to right,
+    transparent,
+    #ffcc66,
+    transparent);
+
+    box-shadow:
+    0 0 15px #ff9900;
+}
+
+.welcome-bottom{
+
+    font-family:'Cinzel',serif;
+
+    color:white;
+
+    font-size:2.5rem;
+
+    letter-spacing:6px;
+
+    text-shadow:
+    0 0 10px rgba(255,200,120,0.7);
+}
+
+/* =========================================
+   ORNAMENTS
+========================================= */
+
+.ornament{
+
+    position:absolute;
+
+    width:65px;
+    height:65px;
+
+    background:
+    linear-gradient(145deg,
+    #ffcc66,
+    #5e3200);
+
+    transform:rotate(45deg);
+
+    box-shadow:
+    0 0 15px #ff9900;
+
+    z-index:5;
+}
+
+.top{
+    top:-22px;
+    left:50%;
+    transform:translateX(-50%) rotate(45deg);
+}
+
+.bottom{
+    bottom:-22px;
+    left:50%;
+    transform:translateX(-50%) rotate(45deg);
+}
+
+.left{
+    left:-22px;
+    top:50%;
+    transform:translateY(-50%) rotate(45deg);
+}
+
+.right{
+    right:-22px;
+    top:50%;
+    transform:translateY(-50%) rotate(45deg);
+}
+
+/* =========================================
+   FIRE PILLARS
+========================================= */
+
+.fire-pillar{
+
+    position:absolute;
+
+    bottom:120px;
+
+    width:16px;
+    height:380px;
+
+    overflow:visible;
+}
+
+.fire-pillar.left{
+    left:12%;
+}
+
+.fire-pillar.right{
+    right:12%;
+}
+
+.fire-pillar::before{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+    left:50%;
+
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+
+    background:#fff3c4;
+
+    transform:translateX(-50%);
+
+    box-shadow:
+    0 0 20px #ff9800,
+    0 0 50px #ff5722,
+    0 0 90px #ffeb3b;
+
+    animation:fireRise 1.2s linear infinite;
+}
+
+.fire-pillar::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+    left:50%;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ffcc33;
+
+    transform:translateX(-50%);
+
+    box-shadow:
+    -20px -80px #ff9800,
+    20px -120px #ff5722,
+    -25px -180px #ffeb3b,
+    30px -250px #ff9800,
+    -15px -300px #ff5722;
+
+    animation:sparks 1.8s linear infinite;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes panelEnter{
+
+    0%{
+        opacity:0;
+        transform:scale(0.5) translateY(100px);
+        filter:blur(10px);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1) translateY(0);
+        filter:blur(0);
+    }
+}
+
+@keyframes floating{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    100%{
+        transform:translateY(-12px);
+    }
+}
+
+@keyframes goldPulse{
+
+    0%{
+        text-shadow:
+        0 0 10px #ffcc33,
+        0 0 25px #ff9800;
+    }
+
+    100%{
+        text-shadow:
+        0 0 20px #fff176,
+        0 0 50px #ff9800,
+        0 0 90px #ff5722;
+    }
+}
+
+@keyframes fireRise{
+
+    0%{
+        opacity:1;
+
+        transform:
+        translateX(-50%)
+        translateY(0)
+        scale(1);
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+        translateX(-60px)
+        translateY(-350px)
+        scale(0);
+    }
+}
+
+@keyframes sparks{
+
+    0%{
+        opacity:1;
+        transform:translateX(-50%) translateY(0);
+    }
+
+    100%{
+        opacity:0;
+        transform:translateX(40px) translateY(-320px);
+    }
+}
+/* =========================================
+   STORY SCREEN & SKIP BUTTON
+   ========================================= */
+#skip-btn {
+    position: absolute;
+    bottom: 40px;
+    right: 50px;
+    padding: 10px 25px;
+    background: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+#skip-btn:hover {
+    background: rgba(255, 152, 0, 0.8);
+    color: #fff;
+    border-color: #ff9800;
+    box-shadow: 0 0 20px #ff9800;
+    transform: scale(1.05);
+}
+
+/* =========================================
+   STORY HUD & FINAL WATERMARK MASKING
+   ========================================= */
+
+/* 1. Cinematic Black Bars: Final solution for watermarks */
+.letterbox {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 10vh; /* 10% of Viewport Height - Adjust if watermark is massive */
+    background: #000; /* SOLID BLACK to block everything */
+    z-index: 1002;
+    pointer-events: none; /* Video click still works in middle */
+}
+
+.top-bar { top: 0; }
+.bottom-bar { bottom: 0; }
+
+/* 2. Gold Trim for Attraction */
+/* 2. Gold Trim for Attraction */
+.gold-trim {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff9800, #ffeb3b, #ff9800, transparent);
+    z-index: 1003;
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.8);
+    pointer-events: none;
+}
+
+/* YAHAN BHI NAAM THEEK KAR DIYE HAIN */
+.gold-trim.top-trim { top: 10vh; } 
+.gold-trim.bottom-trim { bottom: 10vh; }
+
+
+/* 3. Re-position HUD elements into the Top Black Bar */
+.hud-element {
+    position: absolute;
+    top: 2.5vh; /* Center aligned within the 10vh bar */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.4); /* Subtle transparent background */
+    border: 1px solid rgba(255, 152, 0, 0.2);
+    border-radius: 6px;
+    z-index: 1004;
+    font-family: 'Cinzel', serif;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.top-left { left: 30px; border-left: 3px solid #ff9800; }
+.top-right { right: 30px; border-right: 3px solid #ff9800; }
+
+.status-icon { font-size: 1.8rem; filter: drop-shadow(0 0 8px #ff9800); }
+.status-text { display: flex; flex-direction: column; }
+.align-right { text-align: right; }
+.status-text .label { font-size: 0.7rem; color: rgba(255, 255, 255, 0.7); letter-spacing: 2px; }
+.status-text .value { font-size: 1rem; color: #ffeb3b; text-shadow: 0 0 8px #ff9800; font-weight: 900; }
+
+/* Make sure Skip button is above everything else */
+#skip-btn {
+    z-index: 1005; 
+}
+
+/* =========================================
+   DASHBOARD LOGOUT BUTTON
+   ========================================= */
+#logout-btn {
+    padding: 12px 30px;
+    background: transparent;
+    color: #f44336;
+    border: 2px solid #f44336;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+#logout-btn:hover {
+    background: #f44336;
+    color: #fff;
+    box-shadow: 0 0 20px #f44336;
+}

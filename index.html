@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lost Miner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="intro-screen">
+        <h1 id="intro-title">
+            <span class="word">THE</span>
+            <span class="word">LOST</span>
+            <span class="word">MINER</span>
+        </h1>
+    </div>
+
+    <video muted loop id="bg-video">
+        <source src="PixVerse_V6_Image_Text_360P_Cinematic_3D_anima.mp4" type="video/mp4">
+    </video>
+
+    <div id="loader-wrapper">
+        <div class="loading-text" id="loading-text">LOADING 0%</div>
+
+        <div class="loading-bar-bg">
+            <div class="loading-bar-fill" id="loading-fill"></div>
+        </div>
+    </div>
+
+    <button id="start-btn" onclick="showLogin()">
+        UNLOCK THE GATES
+    </button>
+
+    <div id="login-modal">
+
+        <div class="login-box">
+
+            <div class="tab-container">
+                <button type="button"
+                class="tab-btn active"
+                id="tab-login"
+                onclick="event.preventDefault(); switchTab('login');">
+                LOGIN
+                </button>
+
+                <button type="button"
+                class="tab-btn"
+                id="tab-register"
+                onclick="event.preventDefault(); switchTab('register');">
+                SIGN UP
+                </button>
+            </div>
+
+            <h2 class="login-title" id="form-title">
+                IDENTIFY YOURSELF
+            </h2>
+
+            <div id="login-form">
+
+                <div class="input-group">
+                    <input type="text"
+                    id="login-user"
+                    placeholder="PLAYER NAME"
+                    required
+                    autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <input type="password"
+                    id="login-pass"
+                    placeholder="SECRET PASSCODE"
+                    required>
+
+                    <span class="eye-icon"
+                    onclick="togglePassword('login-pass', this)">
+                    👁️
+                    </span>
+                </div>
+
+                <button type="button"
+                class="submit-btn"
+                onclick="event.preventDefault(); submitAuth('login');">
+                ENTER
+                </button>
+
+            </div>
+
+            <div id="register-form" style="display:none;">
+
+                <div class="input-group">
+                    <input type="text"
+                    id="reg-user"
+                    placeholder="CHOOSE PLAYER NAME"
+                    required
+                    autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <input type="password"
+                    id="reg-pass"
+                    placeholder="CREATE PASSCODE"
+                    required>
+
+                    <span class="eye-icon"
+                    onclick="togglePassword('reg-pass', this)">
+                    👁️
+                    </span>
+                </div>
+
+                <div class="input-group">
+                    <input type="password"
+                    id="reg-pass-confirm"
+                    placeholder="CONFIRM PASSCODE"
+                    required>
+
+                    <span class="eye-icon"
+                    onclick="togglePassword('reg-pass-confirm', this)">
+                    👁️
+                    </span>
+                </div>
+
+                <button type="button"
+                class="submit-btn"
+                onclick="event.preventDefault(); submitAuth('register');">
+                FORGE IDENTITY
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AAA DUNGEON ENTRY -->
+    <div id="dungeon-entry">
+
+        <div class="fire-pillar left"></div>
+        <div class="fire-pillar right"></div>
+
+        <div id="welcome-panel">
+
+            <div class="ornament top"></div>
+            <div class="ornament bottom"></div>
+            <div class="ornament left"></div>
+            <div class="ornament right"></div>
+
+            <div class="inner-panel">
+
+                <div class="welcome-top">
+                    WELCOME
+                </div>
+
+                <div class="player-name" id="dynamic-name">
+                    PLAYER
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="welcome-bottom">
+                    TO THE DUNGEON
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div id="story-screen" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; background: #000; overflow: hidden;">
+        
+        <video id="story-video" style="width: 100%; height: 100%; object-fit: cover; position:absolute; top:0; left:0; z-index: 1001;">
+            <source src="story.mp4" type="video/mp4">
+        </video>
+
+        <div class="letterbox top-bar"></div>
+        <div class="letterbox bottom-bar"></div>
+
+        <div class="gold-trim top-trim"></div>
+        <div class="gold-trim bottom-trim"></div>
+
+        <div class="hud-element top-left">
+            <div class="status-icon player-icon">👤</div>
+            <div class="status-text">
+                <span class="label">SEEKER</span>
+                <span class="value" id="hud-player-name">PLAYER</span>
+            </div>
+        </div>
+
+        <div class="hud-element top-right">
+            <div class="status-text align-right">
+                <span class="label">CHAPTER I</span>
+                <span class="value">THE DESCENT</span>
+            </div>
+            <div class="status-icon mystery-icon">🗝️</div>
+        </div>
+
+        <button id="skip-btn" onclick="skipStory()">SKIP >></button>
+    </div>
+    <div id="dashboard-screen" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; background: #111; color: white; justify-content: center; align-items: center; flex-direction: column; font-family: 'Cinzel', serif;">
+        <h1 style="font-size: 4rem; color: #ff9800; text-shadow: 0 0 20px #ff5722;">DASHBOARD</h1>
+        <p style="font-family: 'Montserrat', sans-serif; letter-spacing: 5px; margin-top: 10px; margin-bottom: 40px;">WELCOME BACK, <span id="dash-player-name" style="color: #ffeb3b;">SEEKER</span></p>
+        
+        <button id="logout-btn" onclick="logoutUser()">LOGOUT</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
